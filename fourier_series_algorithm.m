@@ -4,7 +4,8 @@
 clear all;clc; close all
 
 x = @(t) cos(t).^2.*sin(t).^2 % function (change)
-w = 0.5 % omega (change)
+tau = 2*pi % period (change)
+w = 2*pi/tau 
 a0 = (w/pi)*integral(x, 0, 2*pi/w) % first coefficient
 xf = a0/2 % first value 
 
