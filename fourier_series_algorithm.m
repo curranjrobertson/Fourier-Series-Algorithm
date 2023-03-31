@@ -4,7 +4,7 @@
 clear all;clc; close all
 
 x = @(t) cos(10*t); % function (change)
-w = 10;
+w = 10; % omega (change)
 a0 = (w/pi)*integral(x, 0, 2*pi/w); % first coefficient
 xf = a0/2; % first value 
 
