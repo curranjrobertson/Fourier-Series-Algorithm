@@ -1,55 +1,26 @@
 % Curran Robertson
 % Fourier Series Expansion
-% 
 
 clear all;clc; close all
 
-x = @(t) cos(t) 
-w = 0.5
-a0 = (w/pi)*integral(x, 0, 2*pi/w)
-xf = a0/2
-N = 10
-i = 1
+x = @(t) cos(10*t); % function (change)
+w = 10;
+a0 = (w/pi)*integral(x, 0, 2*pi/w); % first coefficient
+xf = a0/2; % first value 
+
+N = 100; % iterations (change)
+i = 1; % init loop
 while i < N
-    
-    a(i) = (w/pi)*integral(@(t) x(t).*cos(i*w*t), 0, 2*pi/w)
-    b(i) = (w/pi)*integral(@(t) x(t).*sin(i*w*t), 0, 2*pi/w)
-    xf = @(t) xf + a(i)*cos(i*w*t)+b(i)*sin(i*w*t)
+    syms t
+    ai = (w/pi)*int(x.*cos(i*w*t), [0, 2*pi/w]);
+    bi = (w/pi)*integral(@(t) x(t).*sin(i*w*t), 0, 2*pi/w);
+    xf = xf + ai*cos(i*w*t)+bi*sin(i*w*t);
     i = i+1;
     
 end
 
-
+pretty(xf)
 
 fplot(xf)
-
-%%
-% Fourier Series Expansion
-tau = 1;
-w = 2*pi/tau;
-N = 10;
-
-t = 0:0.01:tau;
-
-y = cos(t)
-
-plot(t, y)
-hold on
-xline(1)
-plot(t2, y2)
-xline(2)
-
-t = 0:0.01:2;
-yf = a0/2;
-
-for n = 1:N
-    an = 2/((n^2)*(w^2))*(1-cos(n*w));
-    bn = 2/((n^2)*(w^2))*(n*w-sin(n*w));
-    yf = yf + an*cos(n*w*t) + bn*sin(n*w*t);
-end
-
-plot(t,yf)
-title('Fourier Series Expansion of Ramp Function with N = 2')
-xlabel('t')
-ylabel('y')
-hold off
+figure
+fplot(x, 'r')
