@@ -3,12 +3,12 @@
 
 clear all;clc; close all
 
-x = @(t) cos(t).*sin(t) % function (change)
+x = @(t) cos(t).^2.*sin(t).^2 % function (change)
 w = 0.5 % omega (change)
 a0 = (w/pi)*integral(x, 0, 2*pi/w) % first coefficient
 xf = a0/2 % first value 
 
-N = 5 % iterations (change)
+N = 10 % iterations (change)
 i = 1 % init loop
 while i < N
     syms t
