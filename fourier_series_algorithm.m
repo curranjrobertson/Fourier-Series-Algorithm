@@ -1,5 +1,6 @@
 % Curran Robertson
 % Fourier Series Expansion
+% Date: October, 2022
 
 clear all;clc; close all
 
